@@ -60,7 +60,7 @@ imageio>=2.9.0
 ### Usage
 
 ```bash
-python "有限差分加高斯塞尔德求解拉普拉斯方程（动画） - 波浪模拟.py"
+python "main.py"
 ```
 
 ### Parameters
@@ -84,7 +84,7 @@ python "有限差分加高斯塞尔德求解拉普拉斯方程（动画） - 波
 .
 ├── README.md
 ├── README_en.md
-└── 有限差分加高斯塞尔德求解拉普拉斯方程（动画） - 波浪模拟.py
+└── main.py
 ```
 
 ### References
@@ -138,7 +138,7 @@ imageio>=2.9.0
 ### 运行方法
 
 ```bash
-python "有限差分加高斯塞尔德求解拉普拉斯方程（动画） - 波浪模拟.py"
+python "main.py"
 ```
 
 ### 参数配置
@@ -162,7 +162,7 @@ python "有限差分加高斯塞尔德求解拉普拉斯方程（动画） - 波
 .
 ├── README.md          (本文件)
 ├── README_en.md       (英文版说明)
-└── 有限差分加高斯塞尔德求解拉普拉斯方程（动画） - 波浪模拟.py
+└── main.py
 ```
 
 ### 边界条件

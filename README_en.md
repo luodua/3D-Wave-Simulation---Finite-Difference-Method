@@ -64,7 +64,7 @@ pip install numpy matplotlib scikit-image imageio
 ## Usage
 
 ```bash
-python "有限差分加高斯塞尔德求解拉普拉斯方程（动画） - 波浪模拟.py"
+python "main.py"
 ```
 
 ## Parameters
@@ -99,7 +99,7 @@ This simulation uses **fixed boundary conditions** (Dirichlet):
 .
 ├── README.md
 ├── README_en.md
-└── 有限差分加高斯塞尔德求解拉普拉斯方程（动画） - 波浪模拟.py
+└── main.py
 ```
 
 ## Extension Ideas
