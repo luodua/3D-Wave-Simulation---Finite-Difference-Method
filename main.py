@@ -63,49 +63,8 @@ history[0] = u.copy()
 print(f"开始三维波浪运动模拟 (总时间: {total_time}s, 时间步: {timesteps})...")
 start_time = time.time()
 # 预先计算常数项，避免循环内重复计算
-dt_sq_c_sq = (c * dt)**2
-inv_dx_sq = 1.0 / (dx**2)
-inv_dy_sq = 1.0 / (dy**2)
-inv_dz_sq = 1.0 / (dz**2)
-two_u = 2.0  # 因为2*u[i,j,k]可以直接用u[i,j,k] + u[i,j,k]实现
-for step in range(1, timesteps + 1):
-    u_next = np.zeros((Nx, Ny, Nz))
-    
-    # for i in range(1, Nx-1):
-    #     for j in range(1, Ny-1):
-    #         for k in range(1, Nz-1):
-    #             # 计算x方向二阶导数（拉普拉斯算子）
-    #             laplacian_x = (u[i+1, j, k] + u[i-1, j, k] - 2*u[i, j, k]) / dx**2
-    #             laplacian_y = (u[i, j+1, k] + u[i, j-1, k] - 2*u[i, j, k]) / dy**2
-    #             laplacian_z = (u[i, j, k+1] + u[i, j, k-1] - 2*u[i, j, k]) / dz**2
-    #             u_next[i, j, k] = 2*u[i, j, k] - u_prev[i, j, k] + c**2 * dt**2 * (laplacian_x + laplacian_y + laplacian_z)
-    # 使用numpy的切片操作替代部分循环（如果使用numpy数组）
-    # 这种方法会牺牲一些边界条件的灵活性
-    u_next[1:-1, 1:-1, 1:-1] = (
-    2 * u[1:-1, 1:-1, 1:-1] - u_prev[1:-1, 1:-1, 1:-1] + 
-    dt_sq_c_sq * (
-        (u[2:, 1:-1, 1:-1] + u[:-2, 1:-1, 1:-1] - 2*u[1:-1, 1:-1, 1:-1]) * inv_dx_sq +
-        (u[1:-1, 2:, 1:-1] + u[1:-1, :-2, 1:-1] - 2*u[1:-1, 1:-1, 1:-1]) * inv_dy_sq +
-        (u[1:-1, 1:-1, 2:] + u[1:-1, 1:-1, :-2] - 2*u[1:-1, 1:-1, 1:-1]) * inv_dz_sq
-    )
-    )
+# 联系作者
 
-    # 应用边界条件 (固定边界)
-    u_next[0, :, :] = 0
-    u_next[-1, :, :] = 0  #获取最后一个元素  u_next[10, :, :]=0
-    u_next[:, 0, :] = 0
-    u_next[:, -1, :] = 0
-    #u_next[:, :, 0] = 0
-    u_next[:, :, -1] = 0
-    
-    # 更新速度场
-    u_prev = u.copy()
-    u = u_next.copy()
-    
-    # 每10个时间步保存一次波形
-    if step % 10 == 0:
-        history[step//10] = u.copy()
-    
     # 打印进度
     if step % 100 == 0:
         print(f"时间步: {step}/{timesteps} (时间: {step*dt:.2f}s), 最大振幅: {np.max(np.abs(u)):.2f}")
